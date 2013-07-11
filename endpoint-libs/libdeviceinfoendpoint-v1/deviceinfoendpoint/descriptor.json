@@ -1,16 +1,16 @@
 {
   "files": [
     {
-      "path": "ctm-tudor-deviceinfoendpoint-v1-20130629162535-java-1.15.0-rc-sources.jar", 
+      "path": "ctm-tudor-deviceinfoendpoint-v1-20130711155145-java-1.15.0-rc-sources.jar", 
       "type": "source"
     }, 
     {
-      "path": "ctm-tudor-deviceinfoendpoint-v1-20130629162535-java-1.15.0-rc.jar.properties", 
+      "path": "ctm-tudor-deviceinfoendpoint-v1-20130711155145-java-1.15.0-rc.jar.properties", 
       "type": "android.properties"
     }
   ], 
   "kind": "discovery#directoryItem", 
-  "moduleName": "com.tudor.ctm.dm", 
+  "moduleName": "com.google.api.services", 
   "name": "deviceinfoendpoint", 
   "language": "java", 
   "proguard-config": "proguard-google-api-client.txt", 
@@ -689,7 +689,7 @@
     }
   ], 
   "language_version": "1.15.0-rc", 
-  "revision": 20130629162535, 
+  "revision": 20130711155145, 
   "id": "deviceinfoendpoint:v1", 
-  "modulePath": "com/tudor/ctm/dm"
+  "modulePath": "com/google/api/services"
 }

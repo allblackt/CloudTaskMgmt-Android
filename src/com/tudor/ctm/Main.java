@@ -4,11 +4,13 @@ import static com.tudor.ctm.CommonUtilities.DISPLAY_MESSAGE_ACTION;
 import static com.tudor.ctm.CommonUtilities.EXTRA_MESSAGE;
 import static com.tudor.ctm.CommonUtilities.SENDER_ID;
 import static com.tudor.ctm.CommonUtilities.SERVER_URL;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,18 +19,32 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.android.gcm.GCMRegistrar;
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 
 
 public class Main extends Activity {
 
     TextView mDisplay;
     AsyncTask<Void, Void, Void> mRegisterTask;
+    static final int REQUEST_ACCOUNT_PICKER = 2;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         checkNotNull(SERVER_URL, "SERVER_URL");
         checkNotNull(SENDER_ID, "SENDER_ID");
+        
+//        GoogleAccountCredential credential = GoogleAccountCredential.usingAudience(this,
+//        		   "server:client_id:1-web-app.apps.googleusercontent.com");
+//        startActivityForResult(credential.newChooseAccountIntent(),
+//        		   REQUEST_ACCOUNT_PICKER);
+//        
+//        if(1==1)
+//        	return;
+        
+        
+        
+        
         // Make sure the device has the proper dependencies.
         GCMRegistrar.checkDevice(this);
         // Make sure the manifest was properly set - comment out this line
@@ -79,6 +95,29 @@ public class Main extends Activity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode,
+       Intent data) {
+     super.onActivityResult(requestCode, resultCode, data);
+     switch (requestCode) {
+       case REQUEST_ACCOUNT_PICKER:
+         if (data != null && data.getExtras() != null) {
+           String accountName =
+               data.getExtras().getString(
+                   AccountManager.KEY_ACCOUNT_NAME);
+           if (accountName != null) {
+        	   System.out.println(accountName);
+             //setAccountName(accountName);
+//             SharedPreferences.Editor editor = settings.edit();
+//             editor.putString(PREF_ACCOUNT_NAME, accountName);
+//             editor.commit();
+             // User is authorized.
+           }
+         }
+         break;
+     }
+    }
+    
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             /*
@@ -91,10 +130,11 @@ public class Main extends Activity {
             case R.id.options_register:
                 GCMRegistrar.register(this, SENDER_ID);
                 return true;
+                */
             case R.id.options_unregister:
                 GCMRegistrar.unregister(this);
                 return true;
-             */
+            
             case R.id.options_clear:
                 mDisplay.setText(null);
                 return true;

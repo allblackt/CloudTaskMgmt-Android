@@ -9,12 +9,12 @@ import android.content.Intent;
  */
 public final class CommonUtilities {
 
-    static final String SERVER_URL = "http://192.168.198.100:8888";
+    static final String SERVER_URL = "http://10.20.160.32:8888";
 
     /**
      * Google API project id registered to use GCM.
      */
-    static final String SENDER_ID = "1058668486800";
+    static final String SENDER_ID = "<YOUR_GOOGLE_PROJECT_ID>";
 
     /**
      * Tag used on log messages.

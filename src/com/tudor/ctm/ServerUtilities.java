@@ -4,12 +4,9 @@ import static com.tudor.ctm.CommonUtilities.SERVER_URL;
 import static com.tudor.ctm.CommonUtilities.TAG;
 import static com.tudor.ctm.CommonUtilities.displayMessage;
 
-import com.google.android.gcm.GCMRegistrar;
-
-import android.content.Context;
-import android.util.Log;
-
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -19,6 +16,11 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
+
+import android.content.Context;
+import android.util.Log;
+
+import com.google.android.gcm.GCMRegistrar;
 
 /**
  * Helper class used to communicate with the demo server.
@@ -35,9 +37,10 @@ public final class ServerUtilities {
      */
     static void register(final Context context, final String regId) {
         Log.i(TAG, "registering device (regId = " + regId + ")");
-        String serverUrl = SERVER_URL + "/register";
+        String serverUrl = SERVER_URL + "/_ah/api/clouduserendpoint/v1/registerdeviceforuser";
         Map<String, String> params = new HashMap<String, String>();
-        params.put("regId", regId);
+        params.put("deviceKey", regId);
+        params.put("email", "test@example.com");
         long backoff = BACKOFF_MILLI_SECONDS + random.nextInt(1000);
         // Once GCM returns a registration id, we need to register it in the
         // demo server. As the server might be down, we will retry it a couple
@@ -148,6 +151,12 @@ public final class ServerUtilities {
             out.close();
             // handle the response
             int status = conn.getResponseCode();
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String inputLine;
+			while ((inputLine = in.readLine()) != null) {
+				System.out.println(inputLine);
+			}
+			in.close();
             if (status != 200) {
               throw new IOException("Post failed with error code " + status);
             }

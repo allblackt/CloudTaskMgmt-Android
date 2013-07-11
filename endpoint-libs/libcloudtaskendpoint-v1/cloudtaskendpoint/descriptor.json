@@ -1,16 +1,16 @@
 {
   "files": [
     {
-      "path": "ctm-tudor-cloudtaskendpoint-v1-20130629162541-java-1.15.0-rc-sources.jar", 
+      "path": "ctm-tudor-cloudtaskendpoint-v1-20130711155138-java-1.15.0-rc-sources.jar", 
       "type": "source"
     }, 
     {
-      "path": "ctm-tudor-cloudtaskendpoint-v1-20130629162541-java-1.15.0-rc.jar.properties", 
+      "path": "ctm-tudor-cloudtaskendpoint-v1-20130711155138-java-1.15.0-rc.jar.properties", 
       "type": "android.properties"
     }
   ], 
   "kind": "discovery#directoryItem", 
-  "moduleName": "com.tudor.ctm.ui.shared", 
+  "moduleName": "com.google.api.services", 
   "name": "cloudtaskendpoint", 
   "language": "java", 
   "proguard-config": "proguard-google-api-client.txt", 
@@ -689,7 +689,7 @@
     }
   ], 
   "language_version": "1.15.0-rc", 
-  "revision": 20130629162541, 
+  "revision": 20130711155138, 
   "id": "cloudtaskendpoint:v1", 
-  "modulePath": "com/tudor/ctm/ui/shared"
+  "modulePath": "com/google/api/services"
 }
