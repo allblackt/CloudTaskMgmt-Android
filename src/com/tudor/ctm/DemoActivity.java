@@ -12,7 +12,11 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import static com.tudor.ctm.CommonUtilities.SENDER_ID;
+
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
@@ -27,11 +31,6 @@ public class DemoActivity extends Activity {
 	     * Default lifespan (7 days) of a reservation until it is considered expired.
 	     */
 	    public static final long REGISTRATION_EXPIRY_TIME_MS = 1000 * 3600 * 24 * 7;
-
-	    /**
-	     * Substitute you own sender ID here.
-	     */
-	    String SENDER_ID = "508838177362";
 
 	    /**
 	     * Tag used on log messages.
@@ -66,6 +65,36 @@ public class DemoActivity extends Activity {
 	            registerBackground();
 	        }
 	        gcm = GoogleCloudMessaging.getInstance(this);
+	        
+	        Button b = (Button) findViewById(R.id.button1);
+	        b.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					 new AsyncTask <Void,Void,String> () {
+				            @Override
+				            protected String doInBackground(Void... params) {
+				                String msg = "";
+				                try {
+				                    Bundle data = new Bundle();
+				                    data.putString("hello", "World");
+				                    String id = Integer.toString(msgId.incrementAndGet());
+				                    gcm.send(SENDER_ID + "@gcm.googleapis.com", id, data);
+				                    msg = "Sent message";
+				                } catch (IOException ex) {
+				                    msg = "Error :" + ex.getMessage();
+				                }
+				                return msg;
+				            }
+
+				            @Override
+				            protected void onPostExecute(String msg) {
+				                mDisplay.append(msg + "\n");
+				            }
+				        }.execute(null, null, null);
+					
+				}
+			});
 	    }
 	    
 	    /**
@@ -195,6 +224,8 @@ public class DemoActivity extends Activity {
 	                new Date(expirationTime));
 	        editor.putLong(PROPERTY_ON_SERVER_EXPIRATION_TIME, expirationTime);
 	        editor.commit();
+	        
+	        ServerUtilities.register(context, regId);
 	    }
 
 }

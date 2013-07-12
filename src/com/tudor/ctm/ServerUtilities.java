@@ -51,7 +51,7 @@ public final class ServerUtilities {
                 displayMessage(context, context.getString(
                         R.string.server_registering, i, MAX_ATTEMPTS));
                 post(serverUrl, params);
-                GCMRegistrar.setRegisteredOnServer(context, true);
+                //GCMRegistrar.setRegisteredOnServer(context, true);
                 String message = context.getString(R.string.server_registered);
                 CommonUtilities.displayMessage(context, message);
                 return;
