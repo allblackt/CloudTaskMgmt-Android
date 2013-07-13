@@ -7,12 +7,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
+import com.google.android.gcm.GCMBroadcastReceiver;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 public class GcmBroadcastReceiver extends BroadcastReceiver {
 	
-	static final String TAG = "GCMDemo";
+	static final String TAG = "GcmBroadcastReceiver";
     public static final int NOTIFICATION_ID = 1;
     private NotificationManager mNotificationManager;
     NotificationCompat.Builder builder;
@@ -28,23 +30,29 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
             sendNotification("Deleted messages on server: " +
                     intent.getExtras().toString());
         } else {
-            sendNotification("Received: " + intent.getExtras().toString());
+        	if(intent.getExtras().size() < 2) {
+        		Log.v(TAG, "Device registered!");
+        	} else {
+        		sendNotification("Your tasks have changed");
+        	}
         }
         setResultCode(Activity.RESULT_OK);
     }
 
+    
+    
     // Put the GCM message into a notification and post it.
     private void sendNotification(String msg) {
         mNotificationManager = (NotificationManager)
                 ctx.getSystemService(Context.NOTIFICATION_SERVICE);
 
         PendingIntent contentIntent = PendingIntent.getActivity(ctx, 0,
-                new Intent(ctx, DemoActivity.class), 0);
+                new Intent(ctx, Welcome.class), 0);
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(ctx)
-        .setSmallIcon(R.drawable.ic_stat_gcm)
-        .setContentTitle("GCM Notification")
+        .setSmallIcon(R.drawable.project)
+        .setContentTitle("Cloud Tasks - Android")
         .setStyle(new NotificationCompat.BigTextStyle()
         .bigText(msg))
         .setContentText(msg);
@@ -52,4 +60,8 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
         mBuilder.setContentIntent(contentIntent);
         mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
     }
+    
+    
 }
+
+

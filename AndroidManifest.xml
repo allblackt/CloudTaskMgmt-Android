@@ -1,34 +1,66 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.tudor.ctm">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tudor.ctm"
+    android:versionCode="1"
+    android:versionName="1.0" >
 
-    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="17"/>
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="14" />
 
-    <permission android:name="com.tudor.ctm.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
+    <permission
+        android:name="com.tudor.ctm.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
 
-   <uses-permission android:name="android.permission.INTERNET"/>
-   <uses-permission android:name="com.tudor.ctm.permission.C2D_MESSAGE"/>
-   <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
-   <uses-permission android:name="android.permission.WAKE_LOCK"/>
-   <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-   <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
-   <application android:allowBackup="true" android:icon="@drawable/ic_launcher" android:label="@string/app_name" android:theme="@style/AppTheme">
-        <activity android:label="@string/app_name" android:name="com.tudor.ctm.DemoActivity">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.tudor.ctm.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/project"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.tudor.ctm.Welcome"
+            android:label="@string/app_name" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".GcmBroadcastReceiver"/>
-        <receiver android:name=".GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+
+        <service android:name="com.tudor.ctm.GcmBroadcastReceiver" />
+
+        <receiver
+            android:name="com.tudor.ctm.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-                <category android:name="com.tudor.ctm"/>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="com.tudor.ctm" />
             </intent-filter>
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
-                <category android:name="com.tudor.ctm"/>
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.tudor.ctm" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name="com.tudor.ctm.CloudProjects"
+            android:label="@string/title_activity_cloud_projects" >
+        </activity>
+        
+        <activity
+            android:name="com.tudor.ctm.CloudTasks"
+            android:label="@string/title_activity_cloud_tasks" >
+        </activity>
+        
     </application>
 
-</manifest>
+</manifest>

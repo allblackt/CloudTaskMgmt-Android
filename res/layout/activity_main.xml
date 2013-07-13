@@ -13,12 +13,6 @@
             android:id="@+id/display"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Button" />
     </LinearLayout>
 
 </ScrollView>
