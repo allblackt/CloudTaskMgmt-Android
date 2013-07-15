@@ -59,7 +59,7 @@ public class CloudTaskDAO {
 		Log.d(TAG, "Trying to get all the tasks for project " + project.getId());
 		List<CloudTask> tasks = null;
 		try {
-			Cursor cursor = database.query(TASKSTABLE.TABLENAME, allColumns, null, null, null, null, null);
+			Cursor cursor = database.query(TASKSTABLE.TABLENAME, allColumns, TASKSTABLE.COLUMNS.project + "=" + project.getId(), null, null, null, null);
 			cursor.moveToFirst();
 			tasks = new ArrayList<CloudTask>();
 			while(!cursor.isAfterLast()) {
@@ -78,6 +78,11 @@ public class CloudTaskDAO {
 			e.printStackTrace();
 		}
 		return tasks;
+	}
+	
+	public void clearProjectTasks(CloudProject project) {
+		Log.w(TAG, "Clearing the table for project " + project.getId());
+		database.delete(TASKSTABLE.TABLENAME, TASKSTABLE.COLUMNS.project + "=" + project.getId(), null);
 	}
 	
 	public void clearTable() {

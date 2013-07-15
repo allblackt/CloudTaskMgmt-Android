@@ -107,7 +107,7 @@ public class CloudTasks extends Activity {
 						//Get the tasks from the Internet
 						tasks = cte.getusertasks(user.getId(), project.getId()).execute().getItems();
 						if(tasks != null ) {
-							ctd.clearTable();
+							ctd.clearProjectTasks(project);
 							for (CloudTask task : tasks) {
 								ctd.addTask(task);
 							}
