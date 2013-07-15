@@ -22,12 +22,12 @@ import android.util.Log;
  */
 public final class CommonUtilities {
 
-    static final String SERVER_URL = "http://ctm-tudor.appspot.com";
+    static final String SERVER_URL = "<YOUR BASE APPLICATION SERVER URL HERE>";
 
     /**
      * Google API project id registered to use GCM.
      */
-    static final String SENDER_ID = "508838177362";
+    static final String SENDER_ID = "<YOUR GOOGLE PROJECT ID HERE>";
 
     /**
      * Tag used on log messages.
