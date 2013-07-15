@@ -203,4 +203,26 @@ public final class CloudUser extends com.google.api.client.json.GenericJson {
 	public String toString() {
 		return "CloudUser [email=" + email + ", id=" + id + "]";
 	}
+
+	public static class Builder {
+		private java.lang.String email;
+		private java.lang.Long id;
+
+		public Builder email(java.lang.String email) {
+			this.email = email;
+			return this;
+		}
+
+		public Builder id(java.lang.Long id) {
+			this.id = id;
+			return this;
+		}
+
+		public CloudUser build() {
+			CloudUser cloudUser = new CloudUser();
+			cloudUser.email = email;
+			cloudUser.id = id;
+			return cloudUser;
+		}
+	}
 }

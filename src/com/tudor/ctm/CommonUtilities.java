@@ -1,12 +1,19 @@
 package com.tudor.ctm;
 
+import static com.tudor.ctm.CommonUtilities.PROPERTY_EMAIL_ADDRESS;
+import static com.tudor.ctm.CommonUtilities.PROPERTY_USER_ID;
+
 import java.util.Date;
+
+import com.google.api.services.clouduserendpoint.model.CloudUser;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 
 /**
@@ -43,6 +50,12 @@ public final class CommonUtilities {
     public static final String PROPERTY_PROJECT_ID = "project_id";
     public static final String PROPERTY_PROJECT_NAME = "project_name";
     public static final String PROPERTY_APP_VERSION = "appVersion";
+    public static final String PROPERTY_TASK_TITLE = "task_title";
+    public static final String PROPERTY_TASK_DESCRIPTION = "task_description";
+    public static final String PROPERTY_TASK_ID = "task_id";
+    public static final String PROPERTY_TASK_DUE_DATE = "task_due_date";
+    public static final String PROPERTY_REMAINIG_TIME = "remaining_time";
+    public static final String PROPERTY_TOTAL_TIME = "total_time";
     public static final String PROPERTY_ON_SERVER_EXPIRATION_TIME = "onServerExpirationTimeMs";
     public static final long REGISTRATION_EXPIRY_TIME_MS = 1000 * 3600 * 24 * 7;
         
@@ -96,14 +109,36 @@ public final class CommonUtilities {
 
     }
     
-   
-    
     public static void setUserDetails(Context context, String emailAddress, String userId) {
         final SharedPreferences prefs = getPrivatePreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(PROPERTY_EMAIL_ADDRESS, emailAddress);
         editor.putString(PROPERTY_USER_ID, userId);
         editor.commit();
+    }
+    
+    public static boolean isOnline(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo netInfo = cm.getActiveNetworkInfo();
+            if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+                return true;
+            }
+            return false;
+    }
+    
+    public static CloudUser getRegisteredUser(Context context) {
+    	final SharedPreferences prefs = getPrivatePreferences(context);
+        String emailAddress = prefs.getString(PROPERTY_EMAIL_ADDRESS, "");
+        String userId = prefs.getString(PROPERTY_USER_ID, "");
+        if (emailAddress.length() == 0 || userId.length() == 0) {
+            Log.v(TAG, "User not found.");
+            return null;
+        }
+        CloudUser u = new CloudUser();
+        u.setEmail(emailAddress);
+        u.setId(Long.parseLong(userId));
+        return u;
     }
     
     /**

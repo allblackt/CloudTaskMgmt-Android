@@ -24,6 +24,7 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.cloudprojectendpoint.Cloudprojectendpoint;
 import com.google.api.services.cloudprojectendpoint.model.CloudProject;
 import com.google.api.services.clouduserendpoint.model.CloudUser;
+import com.tudor.ctm.db.CloudProjectDAO;
 
 import static com.tudor.ctm.CommonUtilities.PROPERTY_EMAIL_ADDRESS;
 import static com.tudor.ctm.CommonUtilities.PROPERTY_USER_ID;
@@ -79,13 +80,39 @@ public class CloudProjects extends Activity {
 			
 			@Override
 			protected List<CloudProject> doInBackground(Void... params) {
+				List<CloudProject> results = null;
+				CloudProjectDAO cpd = null;
 				try {
-					List<CloudProject> results = cpe
-							.getuserprojectsbyemail(user.getEmail()).execute()
-							.getItems();
+					cpd = new CloudProjectDAO(context);
+					cpd.open();
+					//refresh items from the Internet
+					if(CommonUtilities.isOnline(context)) {
+						Log.d(TAG, "Device online, getting them from the Internet");
+						results = cpe
+								.getuserprojectsbyemail(user.getEmail()).execute()
+								.getItems();
+						if(results != null) {
+							//cache them in the database
+							cpd.clearTable();
+							for (CloudProject project : results) {
+								Log.d(TAG, "Device offline, getting projects from database...");
+								cpd.addProject(project);
+							}
+						} else {
+							
+						}
+					} else {
+						//get them from the local database
+						results = cpd.getAllProjects();
+					}
 					return results;
 				} catch (IOException e) {
 					e.printStackTrace();
+				} finally {
+					//cleanup
+					if(cpd != null) {
+						cpd.close();
+					}
 				}
 				return null;
 			}
@@ -98,8 +125,7 @@ public class CloudProjects extends Activity {
 					projects = results;
 					populateListWithProjects();
 				} else {
-					Toast.makeText(context, "Null projects object", Toast.LENGTH_LONG).show();
-					;
+					Toast.makeText(context, "No projects found", Toast.LENGTH_LONG).show();
 				}
 			}
 		}.execute();
@@ -133,28 +159,6 @@ public class CloudProjects extends Activity {
 		startActivity(intent);
 	}
 	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-    	switch(item.getItemId()) {
-    	case R.id.options_clear:
-    			Log.d(TAG, "Clearing data");
-    			CommonUtilities.setUserDetails(context, null, null);
-    			CommonUtilities.setRegistrationId(context, null);
-    		break;
-    	case R.id.options_exit:
-    		finish();
-    		break;
-    	}
-    	return true;
-	}
-
 	@Override
 	protected void onStop() {
 		if(mDialog != null) {

@@ -18,6 +18,8 @@
 
 package com.google.api.services.cloudprojectendpoint;
 
+import com.google.api.services.clouduserendpoint.model.CloudUser;
+
 /**
  * Service definition for Cloudprojectendpoint (v1).
  *
@@ -229,7 +231,7 @@ public class Cloudprojectendpoint extends com.google.api.client.googleapis.servi
    * @param content the {@link com.google.api.services.cloudprojectendpoint.model.CloudUser}
    * @return the request
    */
-  public Getuserprojects getuserprojects(com.google.api.services.cloudprojectendpoint.model.CloudUser content) throws java.io.IOException {
+  public Getuserprojects getuserprojects(CloudUser content) throws java.io.IOException {
     Getuserprojects result = new Getuserprojects(content);
     initialize(result);
     return result;
@@ -248,10 +250,10 @@ public class Cloudprojectendpoint extends com.google.api.client.googleapis.servi
      * ractGoogleClientRequest)} must be called to initialize this instance immediately after invoking
      * the constructor. </p>
      *
-     * @param content the {@link com.google.api.services.cloudprojectendpoint.model.CloudUser}
+     * @param content the {@link CloudUser}
      * @since 1.13
      */
-    protected Getuserprojects(com.google.api.services.cloudprojectendpoint.model.CloudUser content) {
+    protected Getuserprojects(CloudUser content) {
       super(Cloudprojectendpoint.this, "POST", REST_PATH, content, com.google.api.services.cloudprojectendpoint.model.CloudProjectCollection.class);
     }
 

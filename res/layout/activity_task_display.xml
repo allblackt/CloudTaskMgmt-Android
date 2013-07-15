@@ -1,0 +1,86 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".TaskDisplay" >
+
+    <EditText
+        android:id="@+id/txtTaskTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/task_title" />
+
+    <EditText
+        android:id="@+id/txtTaskDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtTaskTitle"
+        android:layout_below="@+id/txtTaskTitle"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:lines="4"
+        android:maxLines="4"
+        android:hint="@string/task_description" />
+
+    <EditText
+        android:id="@+id/dpDueDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtTaskDescription"
+        android:layout_below="@+id/txtTaskDescription"
+        android:ems="10"
+        android:inputType="date" />
+
+    <TextView
+        android:id="@+id/lblRemainingTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/dpDueDate"
+        android:layout_below="@+id/dpDueDate"
+        android:text="@string/remaining_time" />
+
+    <EditText
+        android:id="@+id/npTaskRemainingTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblRemainingTime"
+        android:layout_below="@id/lblRemainingTime"
+        android:ems="10"
+        android:inputType="number"
+        android:text="0" >
+
+    </EditText>
+
+    <TextView
+        android:id="@+id/lblTotalTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/npTaskRemainingTime"
+        android:layout_below="@+id/npTaskRemainingTime"
+        android:text="@string/total_time" />
+
+    <EditText
+        android:id="@+id/npTimeTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblTotalTime"
+        android:layout_below="@+id/lblTotalTime"
+        android:ems="10"
+        android:inputType="number"
+        android:text="0" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/npTimeTotal"
+        android:layout_alignRight="@+id/npTimeTotal"
+        android:layout_below="@+id/npTimeTotal"
+        android:text="@string/save" />
+
+</RelativeLayout>

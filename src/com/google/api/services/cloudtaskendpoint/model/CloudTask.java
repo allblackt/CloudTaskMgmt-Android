@@ -18,6 +18,9 @@
 
 package com.google.api.services.cloudtaskendpoint.model;
 
+import com.google.api.services.cloudprojectendpoint.model.CloudProject;
+import com.google.api.services.clouduserendpoint.model.CloudUser;
+
 /**
  * Model definition for CloudTask.
  *
@@ -31,182 +34,249 @@ package com.google.api.services.cloudtaskendpoint.model;
 @SuppressWarnings("javadoc")
 public final class CloudTask extends com.google.api.client.json.GenericJson {
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key @com.google.api.client.json.JsonString
-  private java.lang.Long id;
+	/**
+	 * The value may be {@code null}.
+	 */
+	@com.google.api.client.util.Key
+	@com.google.api.client.json.JsonString
+	private java.lang.Long id;
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private CloudUser owner;
+	/**
+	 * The value may be {@code null}.
+	 */
+	@com.google.api.client.util.Key
+	private CloudUser owner;
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private CloudProject project;
+	/**
+	 * The value may be {@code null}.
+	 */
+	@com.google.api.client.util.Key
+	private CloudProject project;
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private java.lang.Integer remainingTime;
+	/**
+	 * The value may be {@code null}.
+	 */
+	@com.google.api.client.util.Key
+	private java.lang.Integer remainingTime;
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private java.lang.String taskDescription;
+	/**
+	 * The value may be {@code null}.
+	 */
+	@com.google.api.client.util.Key
+	private java.lang.String taskDescription;
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private com.google.api.client.util.DateTime taskDueDate;
+	/**
+	 * The value may be {@code null}.
+	 */
+	@com.google.api.client.util.Key
+	private com.google.api.client.util.DateTime taskDueDate;
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private java.lang.String taskTitle;
+	/**
+	 * The value may be {@code null}.
+	 */
+	@com.google.api.client.util.Key
+	private java.lang.String taskTitle;
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private java.lang.Integer totalTime;
+	/**
+	 * The value may be {@code null}.
+	 */
+	@com.google.api.client.util.Key
+	private java.lang.Integer totalTime;
 
-  /**
-   * @return value or {@code null} for none
-   */
-  public java.lang.Long getId() {
-    return id;
-  }
+	/**
+	 * @return value or {@code null} for none
+	 */
+	public java.lang.Long getId() {
+		return id;
+	}
 
-  /**
-   * @param id id or {@code null} for none
-   */
-  public CloudTask setId(java.lang.Long id) {
-    this.id = id;
-    return this;
-  }
+	/**
+	 * @param id id or {@code null} for none
+	 */
+	public CloudTask setId(java.lang.Long id) {
+		this.id = id;
+		return this;
+	}
 
-  /**
-   * @return value or {@code null} for none
-   */
-  public CloudUser getOwner() {
-    return owner;
-  }
+	/**
+	 * @return value or {@code null} for none
+	 */
+	public CloudUser getOwner() {
+		return owner;
+	}
 
-  /**
-   * @param owner owner or {@code null} for none
-   */
-  public CloudTask setOwner(CloudUser owner) {
-    this.owner = owner;
-    return this;
-  }
+	/**
+	 * @param owner owner or {@code null} for none
+	 */
+	public CloudTask setOwner(CloudUser owner) {
+		this.owner = owner;
+		return this;
+	}
 
-  /**
-   * @return value or {@code null} for none
-   */
-  public CloudProject getProject() {
-    return project;
-  }
+	/**
+	 * @return value or {@code null} for none
+	 */
+	public CloudProject getProject() {
+		return project;
+	}
 
-  /**
-   * @param project project or {@code null} for none
-   */
-  public CloudTask setProject(CloudProject project) {
-    this.project = project;
-    return this;
-  }
+	/**
+	 * @param project project or {@code null} for none
+	 */
+	public CloudTask setProject(CloudProject project) {
+		this.project = project;
+		return this;
+	}
 
-  /**
-   * @return value or {@code null} for none
-   */
-  public java.lang.Integer getRemainingTime() {
-    return remainingTime;
-  }
+	/**
+	 * @return value or {@code null} for none
+	 */
+	public java.lang.Integer getRemainingTime() {
+		return remainingTime;
+	}
 
-  /**
-   * @param remainingTime remainingTime or {@code null} for none
-   */
-  public CloudTask setRemainingTime(java.lang.Integer remainingTime) {
-    this.remainingTime = remainingTime;
-    return this;
-  }
+	/**
+	 * @param remainingTime remainingTime or {@code null} for none
+	 */
+	public CloudTask setRemainingTime(java.lang.Integer remainingTime) {
+		this.remainingTime = remainingTime;
+		return this;
+	}
 
-  /**
-   * @return value or {@code null} for none
-   */
-  public java.lang.String getTaskDescription() {
-    return taskDescription;
-  }
+	/**
+	 * @return value or {@code null} for none
+	 */
+	public java.lang.String getTaskDescription() {
+		return taskDescription;
+	}
 
-  /**
-   * @param taskDescription taskDescription or {@code null} for none
-   */
-  public CloudTask setTaskDescription(java.lang.String taskDescription) {
-    this.taskDescription = taskDescription;
-    return this;
-  }
+	/**
+	 * @param taskDescription taskDescription or {@code null} for none
+	 */
+	public CloudTask setTaskDescription(java.lang.String taskDescription) {
+		this.taskDescription = taskDescription;
+		return this;
+	}
 
-  /**
-   * @return value or {@code null} for none
-   */
-  public com.google.api.client.util.DateTime getTaskDueDate() {
-    return taskDueDate;
-  }
+	/**
+	 * @return value or {@code null} for none
+	 */
+	public com.google.api.client.util.DateTime getTaskDueDate() {
+		return taskDueDate;
+	}
 
-  /**
-   * @param taskDueDate taskDueDate or {@code null} for none
-   */
-  public CloudTask setTaskDueDate(com.google.api.client.util.DateTime taskDueDate) {
-    this.taskDueDate = taskDueDate;
-    return this;
-  }
+	/**
+	 * @param taskDueDate taskDueDate or {@code null} for none
+	 */
+	public CloudTask setTaskDueDate(
+			com.google.api.client.util.DateTime taskDueDate) {
+		this.taskDueDate = taskDueDate;
+		return this;
+	}
 
-  /**
-   * @return value or {@code null} for none
-   */
-  public java.lang.String getTaskTitle() {
-    return taskTitle;
-  }
+	/**
+	 * @return value or {@code null} for none
+	 */
+	public java.lang.String getTaskTitle() {
+		return taskTitle;
+	}
 
-  /**
-   * @param taskTitle taskTitle or {@code null} for none
-   */
-  public CloudTask setTaskTitle(java.lang.String taskTitle) {
-    this.taskTitle = taskTitle;
-    return this;
-  }
+	/**
+	 * @param taskTitle taskTitle or {@code null} for none
+	 */
+	public CloudTask setTaskTitle(java.lang.String taskTitle) {
+		this.taskTitle = taskTitle;
+		return this;
+	}
 
-  /**
-   * @return value or {@code null} for none
-   */
-  public java.lang.Integer getTotalTime() {
-    return totalTime;
-  }
+	/**
+	 * @return value or {@code null} for none
+	 */
+	public java.lang.Integer getTotalTime() {
+		return totalTime;
+	}
 
-  /**
-   * @param totalTime totalTime or {@code null} for none
-   */
-  public CloudTask setTotalTime(java.lang.Integer totalTime) {
-    this.totalTime = totalTime;
-    return this;
-  }
+	/**
+	 * @param totalTime totalTime or {@code null} for none
+	 */
+	public CloudTask setTotalTime(java.lang.Integer totalTime) {
+		this.totalTime = totalTime;
+		return this;
+	}
 
-  @Override
-  public CloudTask set(String fieldName, Object value) {
-    return (CloudTask) super.set(fieldName, value);
-  }
+	@Override
+	public CloudTask set(String fieldName, Object value) {
+		return (CloudTask) super.set(fieldName, value);
+	}
 
-  @Override
-  public CloudTask clone() {
-    return (CloudTask) super.clone();
-  }
+	@Override
+	public CloudTask clone() {
+		return (CloudTask) super.clone();
+	}
+	
+	public static class Builder {
+		private java.lang.Long id;
+		private CloudProject project;
+		private java.lang.Integer remainingTime;
+		private java.lang.String taskDescription;
+		private com.google.api.client.util.DateTime taskDueDate;
+		private java.lang.String taskTitle;
+		private java.lang.Integer totalTime;
 
+		public Builder id(java.lang.Long id) {
+			this.id = id;
+			return this;
+		}
+
+		public Builder project(CloudProject project) {
+			this.project = project;
+			return this;
+		}
+
+		public Builder remainingTime(java.lang.Integer remainingTime) {
+			this.remainingTime = remainingTime;
+			return this;
+		}
+
+		public Builder taskDescription(java.lang.String taskDescription) {
+			this.taskDescription = taskDescription;
+			return this;
+		}
+
+		public Builder taskDueDate(
+				com.google.api.client.util.DateTime taskDueDate) {
+			this.taskDueDate = taskDueDate;
+			return this;
+		}
+
+		public Builder taskTitle(java.lang.String taskTitle) {
+			this.taskTitle = taskTitle;
+			return this;
+		}
+
+		public Builder totalTime(java.lang.Integer totalTime) {
+			this.totalTime = totalTime;
+			return this;
+		}
+
+		public CloudTask build() {
+			CloudTask cloudTask = new CloudTask();
+			cloudTask.id = id;
+			cloudTask.project = project;
+			cloudTask.remainingTime = remainingTime;
+			cloudTask.taskDescription = taskDescription;
+			cloudTask.taskDueDate = taskDueDate;
+			cloudTask.taskTitle = taskTitle;
+			cloudTask.totalTime = totalTime;
+			return cloudTask;
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "CloudTask [id=" + id + ", remainingTime=" + remainingTime
+				+ ", taskDescription=" + taskDescription + ", taskDueDate="
+				+ taskDueDate + ", taskTitle=" + taskTitle + ", totalTime="
+				+ totalTime + "]";
+	}
 }

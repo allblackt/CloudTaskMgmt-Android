@@ -18,6 +18,8 @@
 
 package com.google.api.services.cloudprojectendpoint.model;
 
+import com.google.api.services.clouduserendpoint.model.CloudUser;
+
 /**
  * Model definition for CloudProject.
  * 
@@ -136,5 +138,32 @@ public final class CloudProject extends com.google.api.client.json.GenericJson {
 	@Override
 	public String toString() {
 		return "CloudProject [id=" + id + ", name=" + name + "]";
+	}
+
+	public static class Builder {
+		private java.lang.Long id;
+		private java.lang.String name;
+
+		public Builder id(java.lang.Long id) {
+			this.id = id;
+			return this;
+		}
+
+		public Builder name(java.lang.String name) {
+			this.name = name;
+			return this;
+		}
+
+		public CloudProject build() {
+			return new CloudProject(this);
+		}
+	}
+
+	private CloudProject(Builder builder) {
+		this.id = builder.id;
+		this.name = builder.name;
+	}
+
+	public CloudProject() {
 	}
 }

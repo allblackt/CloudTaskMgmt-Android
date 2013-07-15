@@ -59,55 +59,31 @@ public class Welcome extends Activity {
 	        setContentView(R.layout.activity_main);
 	        mDisplay = (TextView) findViewById(R.id.display);
 
-//	        Intent intent = new Intent(this, CloudProjects.class);
-//        	intent.putExtra("emailAddress", "ctmtestuser1@gmail.com");
-//        	intent.putExtra("userId", "4889528208719872");
-//        	startActivity(intent);
-	        
-        	
         	//DO NOT DELETE THIS. YOU USE IT!!!
 	        context = getApplicationContext();
 	    	Clouduserendpoint.Builder endpointBuilder = new Clouduserendpoint.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), null);
 	    	endpointBuilder.setApplicationName("ctm-tudor");
 	    	mCloudUserEndpoint = endpointBuilder.build();
 	    	
-	        user = getRegisteredUser();
+	        user = CommonUtilities.getRegisteredUser(context);
 	        
 	        if( user == null ) {
 	        	credential = new GoogleAccountCredential(this, null);
 		    	startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
 	        } else {
 	        	registerOnGCM();
-	        	Intent intent = new Intent(this, CloudProjects.class);
-	        	Log.d(TAG, "Starting CloudProjects activity with:" + user.toString());
-	        	intent.putExtra(PROPERTY_EMAIL_ADDRESS, user.getEmail());
-        		intent.putExtra(PROPERTY_USER_ID, user.getId().toString());
-	        	startActivity(intent);
+	        	goToProjects();
 	        }
-	    }
-	    
-	    private CloudUser getRegisteredUser() {
-	    	final SharedPreferences prefs = getPrivatePreferences(context);
-	        String emailAddress = prefs.getString(PROPERTY_EMAIL_ADDRESS, "");
-	        String userId = prefs.getString(PROPERTY_USER_ID, "");
-	        if (emailAddress.length() == 0 || userId.length() == 0) {
-	            Log.v(TAG, "User not found.");
-	            return null;
-	        }
-	        CloudUser u = new CloudUser();
-	        u.setEmail(emailAddress);
-	        u.setId(Long.parseLong(userId));
-	        return u;
-	    }
-	    
-	    /**
-	     * @return Application's {@code SharedPreferences}.
-	     */
-	    private SharedPreferences getPrivatePreferences(Context context) {
-	        return getSharedPreferences(Welcome.class.getSimpleName(), 
-	                Context.MODE_PRIVATE);
 	    }
 
+	    private void goToProjects() {
+        	Intent intent = new Intent(this, CloudProjects.class);
+        	Log.d(TAG, "Starting CloudProjects activity with:" + user.toString());
+        	intent.putExtra(PROPERTY_EMAIL_ADDRESS, user.getEmail());
+    		intent.putExtra(PROPERTY_USER_ID, user.getId().toString());
+        	startActivity(intent);
+	    }
+	    
 	    @Override
 		protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 			super.onActivityResult(requestCode, resultCode, data);
@@ -216,6 +192,7 @@ public class Welcome extends Activity {
 							Log.d(TAG, "Setting user details to " + result.toString());
 							CommonUtilities.setUserDetails(context, result.getEmail(), result.getId().toString());
 							registerOnGCM();
+							goToProjects();
 						}
 					} else {
 						Toast.makeText(context, "User registration failed", Toast.LENGTH_LONG).show();

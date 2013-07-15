@@ -18,6 +18,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -55,12 +56,14 @@
             android:name="com.tudor.ctm.CloudProjects"
             android:label="@string/title_activity_cloud_projects" >
         </activity>
-        
         <activity
             android:name="com.tudor.ctm.CloudTasks"
             android:label="@string/title_activity_cloud_tasks" >
         </activity>
-        
+        <activity
+            android:name="com.tudor.ctm.TaskDisplay"
+            android:label="@string/title_activity_task_display" >
+        </activity>
     </application>
 
-</manifest>
+</manifest>
